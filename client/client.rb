@@ -9,7 +9,8 @@ class Client
 
   # Your retrieve function plus any additional functions go here ...
   def retrieve(option)
-    puts option
+    puts option[:page] if option.has_key?(:page) && option[:page].is_a?(Integer)
+    puts option[:dominant_color] if option.has_key?(:dominant_color) && option[:dominant_color].is_a?(Array)
   end
 
 end
