@@ -9,7 +9,10 @@ class Client
 
   # Your retrieve function plus any additional functions go here ...
   def retrieve
-
+    puts "OK"
   end
 
 end
+
+client = Client.new
+client.retrieve
