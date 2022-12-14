@@ -14,7 +14,8 @@ class Client
     params.concat("&offset=#{(option[:page] - 1) * 10}") if option.has_key?(:page) && option[:page].is_a?(Integer)
     colors = option[:dominant_color] if option.has_key?(:dominant_color) && option[:dominant_color].is_a?(Array)
     params.concat(colors.join('&dominant_color[]=').prepend('&dominant_color[]=')) if colors.all? { |clr| clr.is_a?(String) }
-    puts params
+    response = RestClient.get ARTWORKS_URL.concat(params)
+    puts response
   end
 
 end
