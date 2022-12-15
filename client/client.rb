@@ -11,10 +11,11 @@ class Client
   LIMIT = 10
   def retrieve(option)
     params = "?limit=#{LIMIT}"
-    params.concat("&offset=#{(option[:page] - 1) * 10}") if option.has_key?(:page) && option[:page].is_a?(Integer)
+    page = option.has_key?(:page) && option[:page].is_a?(Integer) ? option[:page] : 1
+    params.concat("&offset=#{(option[:page] - 1) * 10}") unless page == 1
     colors = option[:dominant_color] if option.has_key?(:dominant_color) && option[:dominant_color].is_a?(Array)
     params.concat(colors.join('&dominant_color[]=').prepend('&dominant_color[]=')) if colors.all? { |clr| clr.is_a?(String) }
-    response = JSON.parse(RestClient.get ARTWORKS_URL.concat(params))
+    response = JSON.parse(RestClient.get "#{ARTWORKS_URL}#{params}")
     ids = []
     for_sale = []
     sold_primary_count = 0
