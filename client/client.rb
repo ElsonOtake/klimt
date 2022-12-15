@@ -27,7 +27,13 @@ class Client
       sold_primary_count += 1 if artwork[:availability] == 'sold' && artwork[:isPrimary]
       artist_id.push(artwork[:artist_id]) unless artist_id.include?(artwork[:artist_id])
     end
-    p artist_id
+    artist_name = []
+    artist_id.each do |id|
+      artist = JSON.parse(RestClient.get "#{ARTIST_URL}?id=#{id}")[0]
+      artist.transform_keys!(&:to_sym)
+      artist_name.push(artist[:name])
+    end
+    p artist_name.sort!
   end
 
 end
