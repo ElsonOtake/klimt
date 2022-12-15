@@ -17,13 +17,15 @@ class Client
     response = JSON.parse(RestClient.get ARTWORKS_URL.concat(params))
     ids = []
     for_sale = []
+    sold_primary_count = 0
     response.each do |artwork|
       artwork.transform_keys!(&:to_sym)
       ids.push(artwork[:id])
       artwork[:isPrimary] = ['red', 'blue', 'yellow'].include?(artwork[:dominant_color])
       for_sale.push(artwork) if artwork[:availability] == 'for_sale'
+      sold_primary_count += 1 if artwork[:availability] == 'sold' && artwork[:isPrimary]
     end
-    p for_sale
+    p sold_primary_count
   end
 
 end
