@@ -11,19 +11,20 @@ class Client
   LIMIT = 10
   def retrieve(option = '')
     params = "?limit=#{LIMIT}"
-    page = 1
     if option != ''
-      puts "option #{option}"
-      page = option.has_key?(:page) && option[:page].is_a?(Integer) ? option[:page] : 1
-      params.concat("&offset=#{(option[:page] - 1) * 10}") unless page == 1
       colors = option[:dominant_color] if option.has_key?(:dominant_color) && option[:dominant_color].is_a?(Array)
       if colors
         params.concat(colors.join('&dominant_color[]=').prepend('&dominant_color[]=')) if colors.all? { |clr| clr.is_a?(String) }
       end
+      page = option.has_key?(:page) && option[:page].is_a?(Integer) ? option[:page] : 1
+      next_params = "#{params}&offset=#{page * LIMIT}"
+      params.concat("&offset=#{(option[:page] - 1) * LIMIT}") unless page == 1
+    else
+      page = 1
+      next_params = "#{params}&offset=#{LIMIT}"
     end
     response = JSON.parse(RestClient.get "#{ARTWORKS_URL}#{params}")
-    return "No data found" if !response
-
+    next_response = JSON.parse(RestClient.get "#{ARTWORKS_URL}#{next_params}")
     ids = []
     for_sale = []
     sold_primary_count = 0
@@ -49,7 +50,7 @@ class Client
     output[:soldPrimaryCount] = sold_primary_count
     output[:artistNames] = artist_name.sort
     output[:previousPage] = page == 1 ? nil : page - 1
-    output[:nextPage] = page + 1
+    output[:nextPage] = next_response.nil? || next_response.size == 0 ? nil : page + 1
     output
   end
 
@@ -57,5 +58,6 @@ end
 
 client = Client.new
 # p client.retrieve
-p client.retrieve({ page: 51 })
+# p client.retrieve({ page: 50 })
 # p client.retrieve({ page: 2, dominant_color: ["red", "brown"] })
+p client.retrieve({ page: 10, dominant_color: ["brown"] })
