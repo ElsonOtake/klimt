@@ -16,11 +16,14 @@ class Client
     params.concat(colors.join('&dominant_color[]=').prepend('&dominant_color[]=')) if colors.all? { |clr| clr.is_a?(String) }
     response = JSON.parse(RestClient.get ARTWORKS_URL.concat(params))
     ids = []
+    for_sale = []
     response.each do |artwork|
       artwork.transform_keys!(&:to_sym)
       ids.push(artwork[:id])
+      artwork[:isPrimary] = ['red', 'blue', 'yellow'].include?(artwork[:dominant_color])
+      for_sale.push(artwork) if artwork[:availability] == 'for_sale'
     end
-    p ids
+    p for_sale
   end
 
 end
