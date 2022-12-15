@@ -34,10 +34,17 @@ class Client
       artist.transform_keys!(&:to_sym)
       artist_name.push(artist[:name])
     end
-    p artist_name.sort!
+    output = {}
+    output[:id] = ids
+    output[:for_sale] = for_sale
+    output[:soldPrimaryCount] = sold_primary_count
+    output[:artistNames] = artist_name.sort!
+    output[:previousPage] = page == 1 ? nil : page - 1
+    output[:nextPage] = page + 1
+    output
   end
 
 end
 
 client = Client.new
-client.retrieve({ page: 2, dominant_color: ["red", "brown"] })
+p client.retrieve({ page: 2, dominant_color: ["red", "brown"] })
