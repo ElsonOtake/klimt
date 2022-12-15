@@ -16,6 +16,8 @@ class Client
     colors = option[:dominant_color] if option.has_key?(:dominant_color) && option[:dominant_color].is_a?(Array)
     params.concat(colors.join('&dominant_color[]=').prepend('&dominant_color[]=')) if colors.all? { |clr| clr.is_a?(String) }
     response = JSON.parse(RestClient.get "#{ARTWORKS_URL}#{params}")
+    return "No data found" if !response
+
     ids = []
     for_sale = []
     sold_primary_count = 0
@@ -30,8 +32,8 @@ class Client
     end
     artist_name = []
     artist_id.each do |id|
-      artist = JSON.parse(RestClient.get "#{ARTIST_URL}?id=#{id}")[0]
-      artist.transform_keys!(&:to_sym)
+      artist = JSON.parse(RestClient.get "#{ARTIST_URL}?id=#{id}")[0].transform_keys!(&:to_sym)
+      # artist.transform_keys!(&:to_sym)
       artist_name.push(artist[:name])
     end
     output = {}
