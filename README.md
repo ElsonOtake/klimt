@@ -1,4 +1,32 @@
-# Klimt
+<a name="readme-top"></a>
+
+<!-- TABLE OF CONTENTS -->
+
+# 📗 Table of Contents
+
+- [📖 About the Project](#about-project)
+  - [🛠 Built With](#built-with)
+    - [Tech Stack](#tech-stack)
+    - [Key Features](#key-features)
+- [💻 Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Setup](#setup)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Run tests](#run-tests)
+- [👥 Author](#author)
+- [🔭 Future Features](#future-features)
+- [🤝 Contributing](#contributing)
+- [⭐️ Show your support](#support)
+- [🙏 Acknowledgements](#acknowledgements)
+- [📝 License](#license)
+
+<!-- PROJECT DESCRIPTION -->
+
+Klimt <a name="about-project"></a>
+=====
+
+[Take home source](https://github.com/artsy/klimt)
 
 At Artsy, we often need to query REST endpoints and transform that data into another format needed by the client.
 
@@ -131,3 +159,146 @@ In `client/client.js` or `client/client.rb`, write a function named `retrieve` t
 # Credit
 
 This has been generously inspired by the exercise from [Ad Hoc](https://www.adhoc.team)
+
+## 🛠 Built With <a name="built-with"></a>
+
+### Tech Stack <a name="tech-stack"></a>
+
+<details>
+  <summary>Server</summary>
+  <ul>
+    <li><a href="https://www.ruby-lang.org/en/">Ruby</a></li>
+  </ul>
+  <ul>
+    <li><a href="https://medialize.github.io/URI.js/">URI.js</a></li>
+  </ul>
+</details>
+
+<!-- Features -->
+
+### Key Features <a name="key-features"></a>
+
+- **URI.js**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- GETTING STARTED -->
+
+## 💻 Getting Started <a name="getting-started"></a>
+
+To get a local copy up and running, follow these steps.
+
+### Prerequisites
+
+In order to run this project you need:
+
+[Ruby](https://www.ruby-lang.org/en/)
+
+### Setup
+
+Clone this repository to your desired folder:
+
+using HTTPS:
+```sh
+  git clone https://github.com/ElsonOtake/klimt.git
+  cd klimt
+```
+
+using an SSH key:
+```sh
+  git clone git@github.com:ElsonOtake/klimt.git
+  cd klimt
+```
+
+using GitHub CLI:
+```sh
+  git clone gh repo clone ElsonOtake/klimt
+  cd klimt
+```
+
+### Install
+
+Install this project with:
+```sh
+  bundle install
+````
+
+### Usage
+
+To run the project, execute the following command:
+
+```sh
+  ruby api/server.rb
+```
+
+### Run tests
+
+To run tests, run the following command:
+
+```sh
+  bundle exec rspec test/client_spec.rb
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- AUTHOR -->
+
+## 👥 Author <a name="author"></a>
+
+👤 **Elson Otake**
+
+- GitHub: [elsonotake](https://github.com/elsonotake)
+- Twitter: [@elsonotake](https://twitter.com/elsonotake)
+- LinkedIn: [elsonotake](https://linkedin.com/in/elsonotake)
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- FUTURE FEATURES -->
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- **Use Ruby Rest client library**
+- **Add more tests**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+
+## 🤝 Contributing <a name="contributing"></a>
+
+Contributions, issues, and feature requests are welcome!
+
+Feel free to check the [issues page](../../issues/).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- SUPPORT -->
+
+## ⭐️ Show your support <a name="support"></a>
+
+Give a ⭐️ if you like this project!
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGEMENTS -->
+
+## 🙏 Acknowledgments <a name="acknowledgements"></a>
+
+I would like to thank:
+
+- [Microverse](https://www.microverse.org/)
+- [Ruby-Doc.org](https://ruby-doc.org/)
+- [Ruby on Rails Guides](https://guides.rubyonrails.org/)
+- [Artsy](https://www.artsy.net/)
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
+
+## 📝 License <a name="license"></a>
+
+This project is [MIT](./MIT.md) licensed.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
